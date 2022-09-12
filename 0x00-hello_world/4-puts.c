@@ -1,13 +1,17 @@
 #include <stdio.h>
-#include <string.h>
 
-int main() {
-
+/**
+ * main - Prints string with puts()
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
 	/* Initialize strings */
-	char str[] = "Programming is like building a multilingual puzzle";
-	
+	char str[] = "\"Programming is like building a multilingual puzzle";
+
 	/* Write to stdout */
 	puts(str);
 
-	return 0;
-}	
+	return (0);
+}
