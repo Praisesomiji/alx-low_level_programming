@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+/**
+ * print_size - Print the size of specified type
+ */
+void print_size(long unsigned int type)
+{
+	int size;
+
+	size = sizeof(type);
+	printf("Size of a %s: %lu byte(s)/n", type, size);
+};
+
+/**
+ * main - Entry point
+ *
+ * Return - Always 0 (Success)
+ */
+int main(void)
+{
+	print_size(char);
+	print_size(int);
+	print_size(long int);
+	print_size(long long int);
+	print_size(float);
+
+	return (0);
+};
