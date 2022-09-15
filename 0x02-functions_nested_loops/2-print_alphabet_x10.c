@@ -1,13 +1,19 @@
 #include "main.h"
+
 /**
  * print_alphabet_x10 - Prints the alphabet in lowercase x10
  */
 void print_alphabet_x10(void)
 {
 	int i;
+	char a;
 
 	for (i = 0; i < 10; i++)
 	{
-		print_alphabet();
-	{
+        	for (a = 'a'; a <= 'z'; a++)
+        	{
+                	_putchar(a);
+        	}
+        	_putchar('\n');
+	}
 }
