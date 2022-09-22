@@ -1,18 +1,18 @@
 #include "main.h"
 /**
- * _puts(char *str);
+ * _puts - prints a string
  * @str: a string
  *
  * Return: nothing
  */
 void _puts(char *str)
 {
-	char c = 0;
+	char c;
 
-	while (*(str + c))
+	for (c=0; *(str + c); c++)
 	{
 		_putchar(*(str + c));
-		c++;
 	}
+
 	_putchar('\n');
 }
