@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdio.h>
-/*
+/**
  * puts_half - print the second half of a string 
  * @str - a string
  *
@@ -17,10 +17,14 @@ void puts_half(char *str)
 	{
 		len++;
 	}
-
+	
+	if (len % 2) {
+		len = len - 1;
+	}
+	
 	div = 2;
 
-	n = len/div;
+	n = len / div;
 
 	while (len > n)
 	{
@@ -30,4 +34,3 @@ void puts_half(char *str)
 
 	_putchar('\n');
 }
-
