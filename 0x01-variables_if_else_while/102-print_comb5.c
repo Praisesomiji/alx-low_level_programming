@@ -3,11 +3,11 @@
 /**
  * main - Entry point
  *
- * Description: Prints all possible combinations of two two-digit numbers
- *              The numbers range from 0 to 99, and are printed with two digits
- *              Combinations of numbers are separated by comma and space, and
- *              are printed in ascending order, and
- *              the combination of numbers 00 01 is considered the same as 01 00
+ * Description:	Prints all possible combinations of two two-digit numbers
+ *		The numbers range from 0 to 99, and are printed with two digits
+ *		Combinations of numbers are separated by comma and space, and
+ *		are printed in ascending order, and
+ *		the combination of numbers 00 01 is considered the same as 01 00
  *
  * Return: Always 0 (Success)
  */
