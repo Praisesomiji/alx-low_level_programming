@@ -5,15 +5,12 @@
  *
  * Return: Always 0.
  */
+
 int main(void)
 {
-    char *str;
-    char *string;
+	char *str;
 
-    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
-    string = "Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody\n Somebody Somebody Somebody Somebody Somebody Somebody";
-
-    _puts(str);
-    _puts(string);
-    return (0);
+	str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
+	_puts(str);
+	return (0);
 }
