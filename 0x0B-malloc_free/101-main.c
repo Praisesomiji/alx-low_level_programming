@@ -10,6 +10,7 @@
  */
 
 void print_tab(char **tab)
+
 {
 	int i;
 
@@ -26,6 +27,7 @@ void print_tab(char **tab)
  */
 
 int main(void)
+
 {
 	char **tab;
 
