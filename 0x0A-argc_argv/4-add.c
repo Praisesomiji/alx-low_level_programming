@@ -14,10 +14,10 @@ int positive(char*, int*);
  */
 int main(int argc, char *argv[])
 {
-	int sum = 0;
-	int i = 1;
+	int sum;
+	int i;
 
-	for (;i < argc; i++)
+	for (i = 1, sum = 0; i < argc; i++)
 	{
 		if (positive(argv[i], &sum) != 0)
 		{
