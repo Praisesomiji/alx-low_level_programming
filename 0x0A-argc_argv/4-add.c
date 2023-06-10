@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include  <string.h>
+#include <string.h>
+#include <limits.h>
 
 int positive(char*, int*);
 
@@ -13,10 +14,10 @@ int positive(char*, int*);
  */
 int main(int argc, char *argv[])
 {
-	int sum;
-	int i;
+	int sum = 0;
+	int i = 1;
 
-	for (i = 1, sum = 0; i < argc; i++)
+	for (;i < argc; i++)
 	{
 		if (positive(argv[i], &sum) != 0)
 		{
@@ -37,18 +38,15 @@ int main(int argc, char *argv[])
  */
 int positive(char *m, int *sum)
 {
-	int n = atoi(m);
+	char *endptr;
+	long int n = strtol(m, &endptr, 10);
 
-	if (n == 0)
+	if (*endptr != '\0' || n == LONG_MAX || n == LONG_MIN)
 	{
-		if (strcmp(m, "0") != 0)
-		{
-			printf("Error\n");
-			return (1);
-		}
+		printf("Error\n");
+		return (1);
 	}
 
 	(*sum) += n;
-
 	return (0);
 }
