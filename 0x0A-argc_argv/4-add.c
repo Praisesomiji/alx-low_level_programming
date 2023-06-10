@@ -39,10 +39,13 @@ int positive(char *m, int *sum)
 {
 	int n = atoi(m);
 
-	if (n == 0 && strcmp(m, "0") != 0)
+	if (n == 0)
 	{
-		printf("Error\n");
-		return (1);
+		if (strcmp(m, "0") != 0)
+		{
+			printf("Error\n");
+			return (1);
+		}
 	}
 
 	(*sum) += n;
