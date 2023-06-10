@@ -9,7 +9,7 @@ int positive(char*, int*);
  * @argc: command line args count
  * @argv: array of command line args
  *
- * Return: success(0).
+ * Return: success(0) or failure(1).
  */
 int main(int argc, char *argv[])
 {
