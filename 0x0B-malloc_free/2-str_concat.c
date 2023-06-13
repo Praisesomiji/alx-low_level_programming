@@ -25,7 +25,8 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	}
 
-	for (i = 0; i < l1 + 1; i++)
+	i = 0;
+	for (; i < l1 + 1; i++)
 	{
 		s[i] = s1[i];
 	}
@@ -38,7 +39,7 @@ char *str_concat(char *s1, char *s2)
 	return (s);
 }
 
-/** 
+/**
  * _strlen - find the length of a string
  * @str: a string
  *
