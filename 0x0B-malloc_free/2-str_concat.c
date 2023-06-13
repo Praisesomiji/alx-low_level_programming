@@ -10,7 +10,7 @@ int _strlen(char *str);
  *
  * Return: concatenate strings.
  */
-char *str_concat(char *s1, char *s2);
+char *str_concat(char *s1, char *s2)
 {
         char *s;
         int l1, l2, l, i;
