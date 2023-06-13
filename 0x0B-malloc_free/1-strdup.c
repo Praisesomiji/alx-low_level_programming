@@ -7,7 +7,7 @@
  *
  * Return duplicate string.
  */
- char *_strdup(char *str)
+char *_strdup(char *str)
 {
 	char *s;
 	int len, i;
@@ -22,17 +22,17 @@
 	{
 		len++;
 	}
-	
+
 	s = malloc(sizeof(char) * (len + 1));
 	if (s == NULL)
-        {
-                return (NULL);
-        }
+	{
+		return (NULL);
+	}
 
 	for (i = 0; i < len + 1; i++)
 	{
 		s[i] = str[i];
-	} 
+	}
 
 	return (s);
 }
