@@ -22,12 +22,12 @@
 	{
 		len++;
 	}
-	s = malloc(sizeof(char) * (len + 1));
 	
-	if (s = NULL)
-	{
-		return (NULL);
-	}
+	s = malloc(sizeof(char) * (len + 1));
+	if (s == NULL)
+        {
+                return (NULL);
+        }}
 
 	for (i = 0; i < len + 1; i++)
 	{
