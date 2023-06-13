@@ -3,9 +3,9 @@
 
 /**
  * _strdup - duplicate string
- * @str - string
+ * @str: string
  *
- * Return duplicate string.
+ * Return: duplicate string.
  */
 char *_strdup(char *str)
 {
