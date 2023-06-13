@@ -47,7 +47,7 @@ int _strlen(char *str)
 {
 	int len;
 
-	if (str = NULL)
+	if (str == NULL)
 	{
 		return (0);
 	}
