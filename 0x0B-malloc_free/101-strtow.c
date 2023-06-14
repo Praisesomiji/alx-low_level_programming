@@ -24,6 +24,7 @@ char **strtow(char *str)
 	{
 		return (NULL);
 	}
+
 	sizes = strglen(str);
 	wordcount = sizes[1];
 	words = malloc(sizeof(char *) * wordcount + 1);
