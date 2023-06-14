@@ -135,5 +135,5 @@ int *strglen(char *str)
 	result[0] = len;
 	result[1] = gap;
 
-        return (result);a
+        return (result);
 }
