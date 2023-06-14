@@ -6,7 +6,7 @@ int wordstrt(int cur, char *str);
 int *strglen(char *str);
 
 /**
- * stetow - splits a string into words
+ * strtow - splits a string into words
  * @str: a string
  *
  * Return: a pointer to an array of strings.
