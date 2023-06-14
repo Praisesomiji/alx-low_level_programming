@@ -14,10 +14,9 @@ int *strglen(char *str);
 char **strtow(char *str)
 {
 	int length, wordcount;
-	int start, end;
+	int start, end, charcount;
 	int i, j, k;
 	int *sizes;
-	char *word;
 	char **words;
 
 	if (!str)
@@ -90,12 +89,12 @@ int wordstrt(int cur, char *str)
 	int nxt;
 
 	nxt = cur;
-	while (str[nxt] == " ")
+	while (str[nxt] == ' ')
 	{
 		nxt++;
 		if (str[nxt] == '\n')
 		{
-			return (NULL);
+			return (-1);
 		}
 	}
 	return (nxt);
@@ -120,7 +119,7 @@ int *strglen(char *str)
         while (str[len] != '\0')
         {
 		len++;
-                if (str == " ")
+                if (str[len] == ' ')
                 {
 			if (gap == 0)
 			{
