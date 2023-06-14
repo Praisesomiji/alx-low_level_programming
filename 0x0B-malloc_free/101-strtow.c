@@ -25,9 +25,10 @@ char **strtow(char *str)
 	}
 
 	sizes = strglen(str);
+	length = sizes[0];
 	wordcount = sizes[1];
-	words = malloc(sizeof(char *) * wordcount + 1);
 	free(sizes);
+	words = malloc(sizeof(char *) * wordcount + 1);
 	if (words == NULL)
 	{
 		return (NULL);
