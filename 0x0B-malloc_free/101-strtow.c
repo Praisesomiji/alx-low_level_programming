@@ -44,7 +44,7 @@ char **strtow(char *str)
 			words[i] = malloc(sizeof(char) * charcount + 1);
 			if (words[i] == NULL)
 			{
-				for(; i >= 0; --i )
+				for (; i >= 0; --i)
 				{
 					free(words[i]);
 				}
@@ -128,7 +128,7 @@ int *strglen(char *str)
 				gcount++;
 				gap = 1;
 			}
-        	}
+		}
 		else
 		{
 			gap = 0;
