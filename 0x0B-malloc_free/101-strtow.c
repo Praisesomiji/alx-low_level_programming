@@ -14,12 +14,13 @@ int *strglen(char *str);
 char **strtow(char *str)
 {
 	int length, wordcount;
+	int start, end;
 	int i, j, k;
 	int *sizes;
 	char *word;
 	char **words;
 
-	if (str == NULL || str == "")
+	if (!str)
 	{
 		return (NULL);
 	}
@@ -28,12 +29,12 @@ char **strtow(char *str)
 	words = malloc(sizeof(char *) * wordcount + 1);
 	if (words == NULL)
 	{
-		return (NULL)
+		return (NULL);
 	}
 
 	for (i = 0, k = 0; i < wordcount && k < length; i++, k++)
 	{
-		start = wordstart(k, str);
+		start = wordstrt(k, str);
 		end = wordend(start, str);
 		charcount = end - start;
 		if (charcount > 0)
