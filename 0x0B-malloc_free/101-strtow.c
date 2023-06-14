@@ -44,7 +44,7 @@ char **strtow(char *str)
 			words[i] = malloc(sizeof(char) * charcount + 1);
 			if (words[i] == NULL)
 			{
-				for(; i >=0; --i)
+				for(; i >= 0; --i )
 				{
 					free(words[i]);
 				}
@@ -69,14 +69,14 @@ char **strtow(char *str)
  */
 int wordend(int cur, char *str)
 {
-        int nxt;
+	int nxt;
 
-        nxt = cur;
-        while (str[nxt] != ' ' || str[nxt] != '\n')
-        {
-                nxt++;
-        }
-        return (nxt);
+	nxt = cur;
+	while (str[nxt] != ' ' || str[nxt] != '\n')
+	{
+		nxt++;
+	}
+	return (nxt);
 }
 
 /**
@@ -110,19 +110,19 @@ int wordstrt(int cur, char *str)
  */
 int *strglen(char *str)
 {
-        int len;
-        int gap;
+	int len;
+	int gap;
 	int gcount;
 	int *result;
 
-        len = 0;
+	len = 0;
 	gap = 0;
 	gcount = 0;
-        while (str[len] != '\0')
-        {
+	while (str[len] != '\0')
+	{
 		len++;
-                if (str[len] == ' ')
-                {
+		if (str[len] == ' ')
+		{
 			if (gap == 0)
 			{
 				gcount++;
@@ -133,10 +133,11 @@ int *strglen(char *str)
 		{
 			gap = 0;
 		}
+
 	}
 	result = malloc(sizeof(int) * 2);
 	result[0] = len;
 	result[1] = gap;
 
-        return (result);
+	return (result);
 }
