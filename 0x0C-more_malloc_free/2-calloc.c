@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * _calloc - calculate and allocate memory
@@ -11,18 +12,16 @@
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *ptr;
-	unsigned int i, c;
+	unsigned int n;
 
-	c = a * b;
-	ptr = malloc(c);
+	n = nmemb * size;
+	ptr = malloc(n);
 	if (ptr == NULL)
 	{
 		exit(98);
 	}
 
-	for (i = 0; i < c; i++)
-	{
-		ptr[i] = 0;
-	}
+	memset(ptr, 0, n);
 	return (ptr);
 }
+
