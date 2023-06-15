@@ -13,7 +13,7 @@ int *strglen(char *str);
  */
 char **strtow(char *str)
 {
-	int length, wordcount;
+	int length, wordcount, charscount;
 	int start, end, charcount;
 	int i, j, k;
 	int *sizes;
@@ -27,8 +27,9 @@ char **strtow(char *str)
 	sizes = strglen(str);
 	length = sizes[0];
 	wordcount = sizes[1];
+	charscount = sizes[2];
 	free(sizes);
-	if (length == 0)
+	if (!charscount)
 	{
 		return (NULL);
 	}
@@ -143,16 +144,10 @@ int *strglen(char *str)
 		}
 
 	}
-	result = malloc(sizeof(int) * 2);
-	if (len == gapcount)
-	{
-		result[0] = 0;
-	}
-	else
-	{
-		result[0] = len;
-	}
+	result = malloc(sizeof(int) * 3);
+	result[0] = len;
 	result[1] = wrdcount;
+	result[2] = len - gapcount;
 
 	return (result);
 }
