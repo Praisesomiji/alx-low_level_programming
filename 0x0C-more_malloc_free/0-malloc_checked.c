@@ -5,16 +5,19 @@
  * malloc_checked - allocate memory
  * @b: size of memory
  *
- * Returns: a pointer to the allocated memory.
+ * Return: a pointer to the allocated memory.
  */
 void *malloc_checked(unsigned int b)
 {
 	void *ptr;
 
 	ptr = malloc(b);
-	if (!ptr)
+	if (ptr == NULL)
 	{
 		exit(EXIT_FAILURE);
 	}
-	return ptr;
+	else
+	{
+		return (ptr);
+	}
 }
