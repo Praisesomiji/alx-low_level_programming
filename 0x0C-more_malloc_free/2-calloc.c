@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
+void *_memset(char *ptr, char b, unsigned int n);
 
 /**
  * _calloc - calculate and allocate memory
@@ -21,7 +22,25 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		exit(98);
 	}
 
-	memset(ptr, 0, n);
+	_memset(ptr, 0, n);
 	return (ptr);
 }
 
+/**
+ * _memset - set all the bytes in memory to a given value
+ * @ptr: address of the memory
+ * @b: value to set the memory to
+ * @n: number of bytes to set
+ *
+ * Return: a pointer to the set memory.
+ */
+void *_memset(char *ptr, char b, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		ptr[i] = b;
+	}
+	return (ptr);
+}
