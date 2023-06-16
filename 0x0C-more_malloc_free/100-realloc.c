@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void *popalloc(char *ptr, char *nptr, unsigned int os, unsigned int ns);
+
 /**
  * _realloc - reallocate memory block
  * @ptr: pointer to memory
@@ -11,10 +13,8 @@
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	int i;
 	void *nptr;
 
-	// if new size is old size: return ptr
 	if (new_size == old_size)
 	{
 		if (ptr != NULL)
@@ -23,7 +23,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		}
 
 	}
-	// if new size zero: free ptr; return NULL
+
 	if (new_size == 0)
 	{
 		if (ptr != NULL)
@@ -38,14 +38,32 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		return (NULL);
 	}
-	// if ptr is NULL: return after manually allocating new size
+
 	if (ptr == NULL)
 	{
 		return (nptr);
 	}
-	 // if new size is gt old size: added memory shouldnt be initzed
-	for (i = 0; i < old_size || i < new_size; i++)
+
+	nptr = popalloc(ptr, nptr, old_size, new_size);
+	return (nptr);
+}
+
+/**
+ * popalloc - populate reallocated memory
+ * @ptr: old pointer
+ * @nptr: new pointer
+ * @os: old size
+ * @ns: new size
+ *
+ * Return: new pointer
+ */
+void *popalloc(char *ptr, char *nptr, unsigned int os, unsigned int ns)
+{
+	unsigned int i;
+
+	for (i = 0; i < os || i < ns; i++)
 	{
 		nptr[i] = ptr[i];
 	}
+	return (nptr);
 }
