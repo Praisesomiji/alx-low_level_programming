@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 char *_memcpy(char *dest, char *src, unsigned int n);
 
@@ -49,7 +50,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		size = old_size;
 	}
-	nptr = _memcpy(ptr, nptr, size);
+	nptr = _memcpy(nptr, ptr, size);
 	free(ptr);
 
 	return (nptr);
