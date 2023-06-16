@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void *popalloc(char *ptr, char *nptr, unsigned int os, unsigned int ns);
+char *_memcpy(char *dest, char *src, unsigned int n);
 
 /**
  * _realloc - reallocate memory block
@@ -14,6 +14,7 @@ void *popalloc(char *ptr, char *nptr, unsigned int os, unsigned int ns);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *nptr;
+	unsigned int size;
 
 	if (new_size == old_size)
 	{
@@ -44,26 +45,33 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (nptr);
 	}
 
-	nptr = popalloc(ptr, nptr, old_size, new_size);
+	if (old_size > new_size)
+	{
+		size = new_size;
+	}
+	else
+	{
+		size = old_size;
+	}
+	nptr = _memcpy(ptr, nptr, size);
 	return (nptr);
 }
 
 /**
- * popalloc - populate reallocated memory
- * @ptr: old pointer
- * @nptr: new pointer
- * @os: old size
- * @ns: new size
+ * _memcpy - copy memory
+ * @dest: destination memory
+ * @src: source memory
+ * @n: number of bytes
  *
- * Return: new pointer
+ * Return: pointer to destination memory
  */
-void *popalloc(char *ptr, char *nptr, unsigned int os, unsigned int ns)
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int i;
 
-	for (i = 0; i < os || i < ns; i++)
+	for (i = 0; i < n; i++)
 	{
-		nptr[i] = ptr[i];
+		dest[i] = src[i];
 	}
-	return (nptr);
+	return (dest);
 }
