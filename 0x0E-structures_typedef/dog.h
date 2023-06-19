@@ -1,6 +1,14 @@
-#ifdef DOG_H
-#define DOG_H
+#ifndef DOG_H_
+#define DOG_H_
 
+/**
+ * struct dog - a dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: name of the owner of the dog
+ *
+ * Description: a dog and its properties.
+ */
 struct dog
 {
 	char *name;
@@ -8,4 +16,4 @@ struct dog
 	char *owner;
 };
 
-#endif /* DOG_H */
+#endif /* DOG_H_ */
