@@ -4,7 +4,7 @@
 
 /**
  * free_dog - free memory
- * @d: dog 
+ * @d: dog
  *
  * Return: Nothing.
  */
