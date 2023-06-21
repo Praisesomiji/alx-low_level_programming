@@ -12,8 +12,6 @@ int main(int ac, char **av)
 	int result, a, b;
 	op_funcptr op_ptr;
 
-	printf("Error\n");
-
 	if (ac != 4)
 	{
 		printf("Error\n");
