@@ -20,12 +20,13 @@ int op_sub(int a, int b);
 int op_mul(int a, int b);
 int op_div(int a, int b);
 int op_mod(int a, int b);
-int (*get_op_func(char *s))(int, int);
 /**
- * typedef mop_funcptr - a pointer to a function 
- * 
+ * typedef op_funcptr - a pointer to a function
+ * @int: int
+ *
  * Description: that takes 2 int and returns an int.
  */
 typedef int (*op_funcptr)(int, int);
+op_funcptr get_op_func(char *s);
 
 #endif /* _3_CALC_H_ */

@@ -3,7 +3,7 @@
 /**
  * main - perform simple math operations
  * @ac: arguments count
- * @ac: arguments vector
+ * @av: arguments vector
  *
  * Return: Nothing.
  */
@@ -30,5 +30,5 @@ int main(int ac, char **av)
 
 	printf("%d\n", result);
 
-	return (0);		
+	return (0);
 }

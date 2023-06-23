@@ -2,12 +2,12 @@
 #include <string.h>
 
 /**
- * get_op - select the correct function to perform operation
+ * get_op_func - select the correct function to perform operation
  * @s: the operator
- * 
+ *
  * Return: a pointer to the function to perform operation
  */
-int (*get_op_func(char *s))(int, int)
+op_funcptr get_op_func(char *s)
 {
 	int i;
 	op_t ops[] = {

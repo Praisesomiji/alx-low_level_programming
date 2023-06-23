@@ -37,7 +37,7 @@ int op_mul(int a, int b)
 }
 
 /**
- * op_mul - find the quotient of two numbers
+ * op_div - find the quotient of two numbers
  * @a: a number
  * @b: a number
  *
@@ -54,7 +54,7 @@ int op_div(int a, int b)
 }
 
 /**
- * op_mul - find the mod of two numbers
+ * op_mod - find the mod of two numbers
  * @a: a number
  * @b: a number
  *
