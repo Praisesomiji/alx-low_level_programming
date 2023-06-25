@@ -65,12 +65,12 @@ void print_all(const char * const format, ...)
  */
 char *separator(int i)
 {
-	char *str = "";
+	char *str = ", ";
 
 	switch (i)
 	{
 		case 0:
-			str = ", ";
+			str = "";
 	}
 	return (str);
 }
