@@ -9,7 +9,7 @@
 size_t list_len(const list_t *h)
 {
 	int count = 0;
-	const list_t this = h;
+	const list_t *this = h;
 
 	while (this != NULL)
 	{
