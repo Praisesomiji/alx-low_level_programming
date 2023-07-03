@@ -1,6 +1,6 @@
 #include "lists.h"
 
-void printli(const list_t *h, size_t const *n);
+void printli(const list_t *h, size_t *const n);
 
 /**
  * print_list - prints all the elements of list_t list
@@ -10,12 +10,12 @@ void printli(const list_t *h, size_t const *n);
  */
 size_t print_list(const list_t *h)
 {
-	size_t const *n = 0;
+	size_t *const n = 0;
 
 	if (h != NULL)
-		printli(h, ++n);
+		printli(h, n);
 
-	return (n);
+	return (*n);
 }
 
 /**
@@ -25,10 +25,10 @@ size_t print_list(const list_t *h)
  *
  * Return: The number of nodes.
  */
-void printli(const list_t *h, size_t const *n)
+void printli(const list_t *h, size_t *const n)
 {
 	printf("[%u], %s\n", h->len, h->str);
-
+	(*n)++;
 	if (h->next != NULL)
-		printli(h->next, ++n);
+		printli(h->next, n);
 }
