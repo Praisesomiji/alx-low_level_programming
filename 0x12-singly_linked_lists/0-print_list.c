@@ -1,6 +1,6 @@
 #include "lists.h"
 
-void printli(const list_t *h, size_t *const n);
+void printli(const list_t *h, size_t *const np);
 
 /**
  * print_list - prints all the elements of list_t list
@@ -10,25 +10,26 @@ void printli(const list_t *h, size_t *const n);
  */
 size_t print_list(const list_t *h)
 {
-	size_t *const n = 0;
+	size_t n = 0;
 
-	if (h != NULL)
-		printli(h, n);
+	printli(h, &n);
 
-	return (*n);
+	return (n);
 }
 
 /**
  * printli - prints all the elements of list_t list
  * @h: an pointer to a list_t list
- * @n: keeps track of the number of nodes traversed
+ * @np: keeps track of the number of nodes traversed
  *
  * Return: The number of nodes.
  */
-void printli(const list_t *h, size_t *const n)
+void printli(const list_t *h, size_t *const np)
 {
-	printf("[%u], %s\n", h->len, h->str);
-	(*n)++;
-	if (h->next != NULL)
-		printli(h->next, n);
+	if (h != NULL)
+	{
+		(*np)++;
+		printf("[%u], %s\n", h->len, h->str);
+		printli(h->next, np);
+	}
 }
