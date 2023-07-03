@@ -8,13 +8,13 @@
  */
 size_t print_list(const list_t *h)
 {
-	size_t count = 0;
+	int count = 0;
 	const list_t *this = h;
 
 	while (this != NULL)
 	{
-		printf("[%u], %s\n", this->len, this->str);
 		count++;
+		printf("[%d], %s\n", this->len, this->str);
 		this = this->next;
 	}
 	return (count);
