@@ -1,4 +1,4 @@
-#include "lists.c"
+#include "lists.h"
 
 unsigned int _strlen(char *str);
 

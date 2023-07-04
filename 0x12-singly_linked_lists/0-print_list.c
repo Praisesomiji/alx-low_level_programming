@@ -12,7 +12,7 @@ size_t print_list(const list_t *h)
 	const list_t *this = h;
 
 	if (this == NULL)
-		exit (98);
+		exit(98);
 
 	while (this != NULL)
 	{
