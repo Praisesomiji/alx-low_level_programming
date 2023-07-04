@@ -34,7 +34,7 @@ list_t *add_node(list_t **head, const char *str)
 		new->next = this;
 	else
 		new->next = NULL;
-	
+
 	*head = new;
 	return (new);
 }
@@ -51,12 +51,11 @@ unsigned int _strlen(char *str)
 
 	if (str != NULL)
 	{
-		while(*str)
+		while (*str)
 		{
 			len++;
 			str++;
 		}
 	}
 	return (len);
-		
 }
