@@ -1,4 +1,5 @@
 #include "lists.h"
+#include <string.h>
 
 unsigned int _strlen(char *str);
 
@@ -32,7 +33,7 @@ list_t *add_node_end(list_t **head, const char *str)
 
 	this = *head;
 	if (this != NULL)
-		this.next = new;
+		this->next = new;
 	else
 		this = new;
 
