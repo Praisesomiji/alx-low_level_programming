@@ -1,8 +1,8 @@
 #include "lists.h"
 
 /**
- * free-list - free list_t list
- * @head: first node 
+ * free_list - free list_t list
+ * @head: first node
  *
  * Return: Nothing.
  */
