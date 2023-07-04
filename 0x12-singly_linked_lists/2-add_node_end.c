@@ -4,11 +4,11 @@
 unsigned int _strlen(char *str);
 
 /**
- * add_node_end - add a new node at the end of a list
+ * add_node_end - adds a new node at the beginning of a list
  * @head: pointer to a linked list
- * @str: data for a linked list
+ * @str: string to add as data in new node
  *
- * Return: New node.
+ * Return: The address of the new element, or NULL if it failed.
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
@@ -20,16 +20,8 @@ list_t *add_node_end(list_t **head, const char *str)
 		return (NULL);
 
 	this = *head;
-	if (this != NULL)
-	{
-		while (this->next != NULL)
-		{
-			this = this->next;
-		}
-	}
-
 	data = strdup(str);
-	if (str == NULL)
+	if (data == NULL)
 		return (NULL);
 
 	new = malloc(sizeof(*new));
@@ -43,25 +35,29 @@ list_t *add_node_end(list_t **head, const char *str)
 	if (this != NULL)
 		this->next = new;
 	else
-		(*head) = new;
+		 this = new;
 
-	return (new);
+	*head = this;
+	return (this);
 }
+
 /**
- * _strlen - Calculate string length
+ * _strlen - return the length of a string
  * @str: a string
  *
- * Return: Length of string.
+ * Return: The length of a string.
  */
 unsigned int _strlen(char *str)
 {
-	unsigned int count = 0;
+	unsigned int len = 0;
 
 	if (str != NULL)
+	{
 		while (*str)
 		{
-			count++;
+			len++;
 			str++;
 		}
-	return (count);
+	}
+	return (len);
 }
