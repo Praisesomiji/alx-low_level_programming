@@ -10,13 +10,11 @@ unsigned long int printbchar(unsigned long int n);
  */
 void print_binary(unsigned long int n)
 {
-
 	while (n)
 	{
 		n = printbchar(n);
 	}
 	printbchar(n);
-	_putchar('\n');
 }
 /**
  * printbchar - divide a number by 2, print remainder and return quotient
