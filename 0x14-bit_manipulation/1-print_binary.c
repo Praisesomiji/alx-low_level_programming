@@ -38,10 +38,10 @@ unsigned long int printbchar(unsigned long int n)
 {
 	int m = n;
 
-	m =>> 1;
+	m >>= 1;
 	if (n != (m * 2))
 		_putchar('0');
 	else
 		_putchar('1');
-	return m;
+	return (m);
 }
