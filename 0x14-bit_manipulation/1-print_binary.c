@@ -1,5 +1,7 @@
 #include "main.h"
 
+unsigned long int printbchar(unsigned long int n);
+
 /**
  * print_binary - prints the binary representation of a number
  * @n: a number
@@ -8,7 +10,6 @@
  */
 void print_binary(unsigned long int n)
 {
-	int m;
 
 	while (n)
 	{
@@ -18,17 +19,6 @@ void print_binary(unsigned long int n)
 	_putchar('\n');
 }
 /**
- * _putchar - print a char to te standard output
- * @c: a char
- *
- * Return: On succes 1.
- * On error, -1 is returned, and erno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
  * printbchar - divide a number by 2, print remainder and return quotient
  * @n: a number
  *
@@ -36,7 +26,7 @@ int _putchar(char c)
  */
 unsigned long int printbchar(unsigned long int n)
 {
-	int m = n;
+	unsigned long int m = n;
 
 	m >>= 1;
 	if (n != (m * 2))
