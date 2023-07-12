@@ -10,10 +10,6 @@ unsigned long int printbchar(unsigned long int n);
  */
 void print_binary(unsigned long int n)
 {
-	while (n)
-	{
-		n = printbchar(n);
-	}
 	printbchar(n);
 }
 /**
@@ -24,12 +20,16 @@ void print_binary(unsigned long int n)
  */
 unsigned long int printbchar(unsigned long int n)
 {
-	unsigned long int m = n;
+	unsigned long int m;
 
-	m >>= 1;
+	m = n >> 1;
+	if (m != 0)
+		printbchar(m);
+
 	if (n != (m * 2))
-		_putchar('0');
-	else
 		_putchar('1');
+	else
+		_putchar('0');
+
 	return (m);
 }
