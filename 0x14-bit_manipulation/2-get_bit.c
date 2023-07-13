@@ -28,7 +28,7 @@ int get_bit(unsigned long int n, unsigned int index)
 int getbitindex(unsigned long int n, unsigned int index, unsigned int i)
 {
 	unsigned long int m;
-	unsigned int q, allowance;
+	unsigned int q, wordlen, allowance;
 	int result;
 
 	/* Divide number by 2 */
@@ -56,8 +56,16 @@ int getbitindex(unsigned long int n, unsigned int index, unsigned int i)
 	 * i is not index,
 	 * i is not 0
 	 */
-	q = i >> 2;
-	allowance = (4 * (q + 1)) - i;
+	/*
+	 * Find allowance left:
+	 * find size of a word per this machine
+	 * find the quotient of wordlen and i
+	 * add the product of wordlen and quotient to wordlen
+	 * subtract i from the sum to get allowance cap
+	 */
+	wordlen = sizeof(n) * 8;
+	q = i >> (wordlen >> 1);
+	allowance = (wordlen * (q + 1)) - i;
 	if (index < allowance)
 		return (0);
 	return (-1);
