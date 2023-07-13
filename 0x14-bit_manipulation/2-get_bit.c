@@ -45,5 +45,5 @@ int getbitindex(unsigned long int n, unsigned int index, unsigned int i)
 			return (result);
 	}
 
-	return (-1);
+	return (0);
 }
