@@ -28,16 +28,21 @@ int get_bit(unsigned long int n, unsigned int index)
 int getbitindex(unsigned long int n, unsigned int index, unsigned int i)
 {
 	unsigned long int m;
+	unsigned int q, allowance;
 	int result;
 
+	/* Divide number by 2 */
 	m = n >> 1;
+	/* If this is the index of the value to get */
 	if (index == i)
 	{
+		/* Return the mod of the number and 2 */
 		if (n != (m * 2))
 			return (1);
 		else
 			return (0);
 	}
+	/* If the quotient of the number and 2 is not 0 */
 	if (m != 0)
 	{
 		result = getbitindex(m, index, i + 1);
@@ -45,5 +50,15 @@ int getbitindex(unsigned long int n, unsigned int index, unsigned int i)
 			return (result);
 	}
 
-	return (0);
+	/*
+	 * At this point,
+	 * n is either 0 or 1,
+	 * i is not index,
+	 * i is not 0
+	 */
+	q = i >> 2;
+	allowance = (4 * (q + 1)) - i;
+	if (index < allowance)
+		return (0);
+	return (-1);
 }
