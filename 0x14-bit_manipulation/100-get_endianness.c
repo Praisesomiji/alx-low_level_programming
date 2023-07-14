@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * get_endianess - checks the endianness
+ * get_endianness - checks the endianness
  *
  * Return: 0 if big endian, 1 if little indian.
  */
-int get_endianess(void)
+int get_endianness(void)
 {
 	unsigned int n;
 	unsigned char *np;
