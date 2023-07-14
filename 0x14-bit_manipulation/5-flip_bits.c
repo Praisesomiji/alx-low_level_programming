@@ -34,7 +34,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		if (n)
 		{
 			temp = n;
-			n =>> 1;
+			n >>= 1;
 			a = getmod(temp, n);
 		}
 		else
@@ -46,7 +46,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		if (m)
 		{
 			temp = m;
-			m =>> 1;
+			m >>= 1;
 			b = getmod(temp, m);
 		}
 		else
