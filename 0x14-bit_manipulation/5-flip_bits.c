@@ -3,7 +3,8 @@
 int getmod(unsigned long int whole, unsigned long int half);
 
 /**
- * flip_bits - find the number of bits to be flipped to get from one number to another
+ * flip_bits - find the number of bits to be flipped
+ *	to get from one number to another
  * @n: a number
  * @m: another number
  *
@@ -16,9 +17,6 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	int a, b;
 
 	/*
-	 * n 24 - a 1 1 0 0 0
-	 * m 15 - b 0 1 1 1 1
-	 * d  9 - c 0 1 0 0 1 
 	 * Divide n and m by 2 silmulteaneously
 	 * For every stage of division with varying remainders:
 	 *	count it for flips
@@ -60,8 +58,8 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	}
 	return (flips);
 }
-/** 
- * getmod - get the mod of 2 and a whole number 
+/**
+ * getmod - get the mod of 2 and a whole number
  * @whole: a whole number
  * @half: half of the whole or of the whole - 1
  *
