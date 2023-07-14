@@ -15,19 +15,19 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned long int temp;
 	int a, b;
 
-	// n 24 - a 1 1 0 0 0
-	// m 15 - b 0 1 1 1 1
-	// d  9 - c 0 1 0 0 1 
-	//
-	// Divide n and m by 2 silmulteaneously
-	// For every stage of division with varying remainders:
-	// 	count it for flips
-	// When a quotient becomes 0:
-	// 	mark it as 0 as long as the loop continues
-	// When both quotient becomes 0:
-	// 	end loop
-	// return flips
-
+	/*
+	 * n 24 - a 1 1 0 0 0
+	 * m 15 - b 0 1 1 1 1
+	 * d  9 - c 0 1 0 0 1 
+	 * Divide n and m by 2 silmulteaneously
+	 * For every stage of division with varying remainders:
+	 *	count it for flips
+	 * When a quotient becomes 0:
+	 *	mark it as 0 as long as the loop continues
+	 *When both quotient becomes 0:
+	 *	end loop
+	 * return flips
+	 */
 	flips = 0;
 	while (n || m)
 	{
@@ -58,8 +58,10 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		if (a != b)
 			flips++;
 	}
+	return (flips);
 }
-/** getmod - get the mod of 2 and a whole number 
+/** 
+ * getmod - get the mod of 2 and a whole number 
  * @whole: a whole number
  * @half: half of the whole or of the whole - 1
  *
