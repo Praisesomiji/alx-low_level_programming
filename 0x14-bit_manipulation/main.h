@@ -6,6 +6,7 @@
 
 int _putchar(char);
 unsigned int _raiseto(unsigned int d, unsigned int r);
+int getbitindex(unsigned long int n, unsigned int index, unsigned int i);
 unsigned int binary_to_uint(const char *b);
 void print_binary(unsigned long int n);
 int get_bit(unsigned long int n, unsigned int index);
