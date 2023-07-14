@@ -29,18 +29,18 @@ int set_bit(unsigned long int *n, unsigned int index)
  */
 unsigned int _raiseto(unsigned int d, unsigned int r)
 {
- 	switch (r)
- 	{
- 		case 0:
- 			d = 1;
- 			break;
- 		case 1:
- 			break;
- 		default:
- 			d <<= (r - 1);
- 			break;
- 	}
- 	return (d);
+	switch (r)
+	{
+		case 0:
+			d = 1;
+			break;
+		case 1:
+			break;
+		default:
+			d <<= (r - 1);
+			break;
+	}
+	return (d);
 }
 /**
  * get_bit -  get the value of a bit at a given index
