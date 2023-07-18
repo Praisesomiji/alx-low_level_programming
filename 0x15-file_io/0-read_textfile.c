@@ -3,7 +3,7 @@
 /**
  * read_textfile - reads a text file and prints it to the POSIX standard output
  * @filename: file path
- * @size: number of characters to read
+ * @letters: number of characters to read
  *
  * Return: Number of characters read.
  */
