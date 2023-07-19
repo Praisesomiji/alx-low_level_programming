@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	}
 	if (res > 100)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %s\n", res - 100);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", res - 100);
 		exit(100);
 	}
 
@@ -65,7 +65,7 @@ int copy_file(char *file_from, char *file_to)
 	do {
 		/* if you can not read file_from, exit with code 98 */
 		copied = read(fd[0], buff, 1024);
-		if (res < 0)
+		if (copied < 0)
 			return (98);
 
 		/* if write to file_to fails, exit with code 99 */
@@ -74,7 +74,7 @@ int copy_file(char *file_from, char *file_to)
 	} while (copied);
 
 	/* if you cant close a file descriptor, exit with code 100 */
-	for (i = 0; i < 2, i++)
+	for (i = 0; i < 2; i++)
 	{
 		if (close(fd[i]) < 0)
 			return (fd[i] + 100);
