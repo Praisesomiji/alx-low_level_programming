@@ -16,7 +16,7 @@ int main(int ac, char **av)
 	/* if the number of args is not acccurate, exit with code 97 */
 	if (ac != 3)
 	{
-		dprintf(STDOUT_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	res = copy_file(av[1], av[2]);
