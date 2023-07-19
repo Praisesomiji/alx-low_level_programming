@@ -54,12 +54,12 @@ int copy_file(char *file_from, char *file_to)
 	/* if file_from doesnt exist, exit with code 98 */
 	fd[0] = open(file_from, O_RDONLY);
 	if (fd[0] < 0)
-		return (1);
+		return (98);
 
 	/* if you cant create, exit with code 99 */
 	fd[1] = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd[1] < 0)
-		return  (2);
+		return  (99);
 
 	copied = 0;
 	do {
