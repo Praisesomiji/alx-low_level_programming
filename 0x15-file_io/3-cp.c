@@ -62,8 +62,7 @@ int copy_file(char *file_from, char *file_to)
 		return  (2);
 
 	copied = 0;
-	do
-	{
+	do {
 		/* if you can not read file_from, exit with code 98 */
 		copied = read(fd[0], buff, 1024);
 		if (res < 0)
@@ -72,8 +71,7 @@ int copy_file(char *file_from, char *file_to)
 		/* if write to file_to fails, exit with code 99 */
 		if (write(fd[1], buff, copied) < 0)
 			return (99);
-	}
-	while (copied);
+	} while (copied);
 
 	/* if you cant close a file descriptor, exit with code 100 */
 	for (i = 0; i < 2, i++)
