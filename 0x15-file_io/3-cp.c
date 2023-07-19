@@ -57,7 +57,7 @@ int copy_file(char *file_from, char *file_to)
 		return (1);
 
 	/* if you cant create, exit with code 99 */
-	fd[1] = open(file_to, O_CREAT, 0664 | O_WRONLY | O_TRUNC);
+	fd[1] = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd[1] < 0)
 		return  (2);
 
