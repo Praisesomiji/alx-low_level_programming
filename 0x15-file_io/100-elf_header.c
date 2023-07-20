@@ -7,17 +7,30 @@ typedef Elf64_Ehdr Elf_Ehdr; /* 64-bit machine */
 typedef Elf32_Ehdr Elf_Ehdr; /* 32-bit machine */
 #endif
 
-int print_elfhdr(Elf_Ehdr *h);
-unsigned int _strlen(char *s);
 void perror_exit(char *err_msg);
 int pelf_magic(Elf_Ehdr *h);
 int pelf_class(Elf_Ehdr *h);
 int pelf_data(Elf_Ehdr *h);
+int pelf_version(Elf_Ehdr *h);
+int pelf_osabi(Elf_Ehdr *h);
+int pelf_abiv(Elf_Ehdr *h);
+int pelf_type(Elf_Ehdr *h);
+int pelf_epad(Elf_Ehdr *h);
 
 int main(int ac, char **av)
 {
-	int fd;
-	Elf_Ehdr h;
+	int fd, sz;
+	Elf_Ehdr *h;
+
+	/* Check argument count */
+	if (ac != 2)
+		perror_exit("Usage: elf_header elf_file\n");
+
+	/* Assign memory for header */
+	sz = sizeof(*h);
+	h = malloc(sz);
+	if (!h)
+		perror_exit("Error: Can't assign memory\n");
 
 	/* Check argument count */
 	if (ac != 2)
@@ -49,6 +62,9 @@ int main(int ac, char **av)
 	if (close(fd) < 0)
 		perror_exit("Error: Can't close file\n");
 
+	/* Free header */
+	free(h);
+
 	/* Return success */
 	return (0);
 }
@@ -60,13 +76,13 @@ int main(int ac, char **av)
  */
 int pelf_magic(Elf_Ehdr *h)
 {
-	unsigned char e_ident = h->e_ident;
+	unsigned char *e_ident = h->e_ident;
 	unsigned int count = EI_NIDENT;
 
 	if (e_ident[EI_MAG0] != ELFMAG0 ||
 			e_ident[EI_MAG1] != ELFMAG1 ||
 			e_ident[EI_MAG2] != ELFMAG2 ||
-			e_ident[EI_MAG3] != ELFMAG3 ||)
+			e_ident[EI_MAG3] != ELFMAG3)
 		return (-1);
 
 	while (count--)
@@ -82,7 +98,7 @@ int pelf_magic(Elf_Ehdr *h)
  */
 int pelf_class(Elf_Ehdr *h)
 {
-	unsigned char e_ident = h->e_ident;
+	unsigned char *e_ident = h->e_ident;
 	char *class;
 
 	if (e_ident[EI_CLASS] == ELFCLASS32)
@@ -106,7 +122,7 @@ int pelf_class(Elf_Ehdr *h)
  */
 int pelf_data(Elf_Ehdr *h)
 {
-	unsigned char e_ident = h->e_ident;
+	unsigned char *e_ident = h->e_ident;
 	char *data;
 
 	if (e_ident[EI_DATA] == ELFDATA2LSB)
@@ -130,6 +146,11 @@ int pelf_data(Elf_Ehdr *h)
  */
 int pelf_version(Elf_Ehdr *h)
 {
+	unsigned char *e_ident = h->e_ident;
+
+	if (h && e_ident)
+		return (0);
+	return (0);
 }
 /**
  * pelf_osabi - print OS/ABI info from an elf file header
@@ -139,6 +160,11 @@ int pelf_version(Elf_Ehdr *h)
  */
 int pelf_osabi(Elf_Ehdr *h)
 {
+	unsigned char *e_ident = h->e_ident;
+
+        if (h && e_ident)
+                return (0);
+	return (0);
 }
 /**
  * pelf_abiv - print ABI Version info from an elf file header
@@ -148,6 +174,11 @@ int pelf_osabi(Elf_Ehdr *h)
  */
 int pelf_abiv(Elf_Ehdr *h)
 {
+	unsigned char *e_ident = h->e_ident;
+
+        if (h && e_ident)
+                return (0);
+	return (0);
 }
 /**
  * pelf_type - print Type info from an elf file header
@@ -157,6 +188,11 @@ int pelf_abiv(Elf_Ehdr *h)
  */
 int pelf_type(Elf_Ehdr *h)
 {
+	unsigned char *e_ident = h->e_ident;
+
+        if (h && e_ident)
+                return (0);
+	return (0);
 }
 /**
  * pelf_epad - print Entry Point Address info from an elf file header
@@ -166,22 +202,12 @@ int pelf_type(Elf_Ehdr *h)
  */
 int pelf_epad(Elf_Ehdr *h)
 {
+	unsigned char *e_ident = h->e_ident;
+
+        if (h && e_ident)
+                return (0);
+	return (0);
 }	
-
-	/* Class */
-
-	/* Data */
-
-	/* Version */
-
-	/* OS/ABI */
-
-	/* ABI Version */
-
-	/* Type */
-
-	/* Entry point address */
-
 /**
  * perror_exit - print error message and exit program
  * @err_msg: error message
@@ -200,7 +226,7 @@ void perror_exit(char *err_msg)
  *
  * Return: Length of the string.
  */
-unsigned int _strlen(char *str)
+size_t _strlen(char *str)
 {
 	unsigned int len = 0;
 
