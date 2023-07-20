@@ -77,7 +77,7 @@ int main(int ac, char **av)
 int pelf_magic(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
-	unsigned int count = EI_NIDENT;
+	unsigned int count = 0;
 
 	if (e_ident[EI_MAG0] != ELFMAG0 ||
 			e_ident[EI_MAG1] != ELFMAG1 ||
@@ -85,8 +85,12 @@ int pelf_magic(Elf_Ehdr *h)
 			e_ident[EI_MAG3] != ELFMAG3)
 		return (-1);
 
-	while (count--)
-		printf("Magic: %02x", e_ident[count]);
+	printf("Magic:\t");
+
+	for (count = 0; count < EI_NIDENT; count ++)
+		printf("%02x ", e_ident[count]);
+
+	printf("\n");
 
 	return (0);
 }
@@ -110,7 +114,7 @@ int pelf_class(Elf_Ehdr *h)
 	else
 		return (-1);
 
-	printf("Class:\t%s\n", class);
+	printf("Class:\t\t\t\t%s\n", class);
 
 	return (0);
 }
@@ -134,7 +138,7 @@ int pelf_data(Elf_Ehdr *h)
 	else
 		return (-1);
 
-	printf("Data:\t2's complement, %s\n", data);
+	printf("Data:\t\t\t\t2's complement, %s\n", data);
 
 	return (0);
 }
