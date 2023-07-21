@@ -15,7 +15,7 @@ int pelf_version(Elf_Ehdr *h);
 int pelf_osabi(Elf_Ehdr *h);
 int pelf_abiv(Elf_Ehdr *h);
 int pelf_type(Elf_Ehdr *h);
-int pelf_epad(Elf_Ehdr *h);
+int pelf_entry(Elf_Ehdr *h);
 
 int main(int ac, char **av)
 {
@@ -54,7 +54,7 @@ int main(int ac, char **av)
 	pelf_osabi(h);
 	pelf_abiv(h);
 	pelf_type(h);
-	pelf_epad(h);
+	pelf_entry(h);
 
 	/* Close elf file */
 	if (close(fd) < 0)
@@ -222,6 +222,7 @@ int pelf_abiv(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
 
+	printf("ABI Version\t\t\t%d\n", e_ident[EI_ABIVERSION]);
 
 	return (0);
 }
@@ -233,26 +234,47 @@ int pelf_abiv(Elf_Ehdr *h)
  */
 int pelf_type(Elf_Ehdr *h)
 {
-	unsigned char *e_ident = h->e_ident;
+	unsigned int e_type = h->e_type;
+	char *type;
 
-        if (h && e_ident)
-                return (0);
+	switch (e_type)
+	{
+		case ET_REL:
+			type = "REL (Relocatable file)";
+			break;
+		case ET_EXEC:
+			type = "EXEC (Executable file)";
+			break;
+		case ET_DYN:
+			type = "DYN (Shared object file)";
+			break;
+		case ET_CORE:
+			type = "Core file";
+			break;
+		case ET_LOPROC:
+			type = "LOPROC (Processor-specific)";
+			break;
+		case ET_HIPROC:
+			type = "HIPROC (Processor-specific)";
+			break;
+		default:
+			type = "No file type";
+	}
+
+	printf("Type:\t\t\t\t%s\n", type);
 	return (0);
 }
 /**
- * pelf_epad - print Entry Point Address info from an elf file header
+ * pelf_entry - print Entry Point Address info from an elf file header
  * @h: pointer to elf file header
  *
  * Return: Success (0).
  */
-int pelf_epad(Elf_Ehdr *h)
+int pelf_entry(Elf_Ehdr *h)
 {
-	unsigned char *e_ident = h->e_ident;
-
-        if (h && e_ident)
-                return (0);
+	printf("Entry point address\t\t%lu\n", h->e_entry);
 	return (0);
-}	
+}
 /**
  * perror_exit - print error message and exit program
  * @err_msg: error message
