@@ -46,17 +46,15 @@ int main(int ac, char **av)
 		perror_exit("Error: Can't read file\n");
 
 	/* Print elf file header */
-	if (pelf_magic(h) < 0 ||
-			pelf_class(h) < 0 ||
-			pelf_data(h) < 0 ||
-			pelf_version(h) < 0 ||
-			pelf_osabi(h) < 0 ||
-			pelf_abiv(h) < 0 ||
-			pelf_type(h) < 0 ||
-			pelf_epad(h) < 0)
-	{
+	if (pelf_magic(h) < 0)
 		perror_exit("Error: Not a valid ELF file\n");
-	}
+	pelf_class(h);
+	pelf_data(h);
+	pelf_version(h);
+	pelf_osabi(h);
+	pelf_abiv(h);
+	pelf_type(h);
+	pelf_epad(h);
 
 	/* Close elf file */
 	if (close(fd) < 0)
@@ -112,7 +110,7 @@ int pelf_class(Elf_Ehdr *h)
 		class = "ELF64";
 
 	else
-		return (-1);
+		class = "Invalid";
 
 	printf("Class:\t\t\t\t%s\n", class);
 
@@ -136,7 +134,7 @@ int pelf_data(Elf_Ehdr *h)
 		data = "big endian";
 
 	else
-		return (-1);
+		data = "Invalid";
 
 	printf("Data:\t\t\t\t2's complement, %s\n", data);
 
@@ -152,10 +150,10 @@ int pelf_version(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
 
-	if (e_ident[EI_VERSION] != EV_CURRENT)
-		return (-1);
-
-	printf("Version:\t\t\t%d (current)\n", EV_CURRENT);
+	if (e_ident[EI_VERSION] == EV_CURRENT)
+		printf("Version:\t\t\t%d (current)\n", EV_CURRENT);
+	else
+		printf("Version:\t\t\tInvalid\n");
 
 	return (0);
 }
@@ -224,8 +222,7 @@ int pelf_abiv(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
 
-        if (h && e_ident)
-                return (0);
+
 	return (0);
 }
 /**
