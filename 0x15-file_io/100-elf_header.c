@@ -8,6 +8,7 @@ typedef Elf32_Ehdr Elf_Ehdr; /* 32-bit machine */
 #endif
 
 void perror_exit(char *err_msg);
+int is_elf(Elf_Ehdr *h);
 int pelf_magic(Elf_Ehdr *h);
 int pelf_class(Elf_Ehdr *h);
 int pelf_data(Elf_Ehdr *h);
@@ -46,15 +47,22 @@ int main(int ac, char **av)
 		perror_exit("Error: Can't read file\n");
 
 	/* Print elf file header */
-	if (pelf_magic(h) < 0)
+	if (is_elf(h))
+	{
+		printf("Elf Header:\n");
+		pelf_magic(h);
+		pelf_class(h);
+		pelf_data(h);
+		pelf_version(h);
+		pelf_osabi(h);
+		pelf_abiv(h);
+		pelf_type(h);
+		pelf_entry(h);
+	}
+	else
+	{
 		perror_exit("Error: Not a valid ELF file\n");
-	pelf_class(h);
-	pelf_data(h);
-	pelf_version(h);
-	pelf_osabi(h);
-	pelf_abiv(h);
-	pelf_type(h);
-	pelf_entry(h);
+	}
 
 	/* Close elf file */
 	if (close(fd) < 0)
@@ -67,26 +75,36 @@ int main(int ac, char **av)
 	return (0);
 }
 /**
- * pelf_magic - print Magic from the header of an elf file
+ * is_elf - check if header is of an elf file
  * @h: pointer to elf file header
  *
- * Return: Success (0) OR Failure (-1).
+ * Return: Boolean: True(1) OR False(0).
  */
-int pelf_magic(Elf_Ehdr *h)
+int is_elf(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
-	unsigned int count = 0;
 
 	if (e_ident[EI_MAG0] != ELFMAG0 ||
 			e_ident[EI_MAG1] != ELFMAG1 ||
 			e_ident[EI_MAG2] != ELFMAG2 ||
 			e_ident[EI_MAG3] != ELFMAG3)
-		return (-1);
+		return (0);
+	return (1);
+}
+/**
+ * pelf_magic - print Magic from the header of an elf file
+ * @h: pointer to elf file header
+ *
+ * Return: Success (0).
+ */
+int pelf_magic(Elf_Ehdr *h)
+{
+ 	unsigned int count = 0;
 
-	printf("Magic:\t");
+	printf("\tMagic:\t");
 
 	for (count = 0; count < EI_NIDENT; count ++)
-		printf("%02x ", e_ident[count]);
+		printf("%02x ", h->e_ident[count]);
 
 	printf("\n");
 
@@ -112,7 +130,7 @@ int pelf_class(Elf_Ehdr *h)
 	else
 		class = "Invalid";
 
-	printf("Class:\t\t\t\t%s\n", class);
+	printf("\tClass:\t\t\t\t%s\n", class);
 
 	return (0);
 }
@@ -136,7 +154,7 @@ int pelf_data(Elf_Ehdr *h)
 	else
 		data = "Invalid";
 
-	printf("Data:\t\t\t\t2's complement, %s\n", data);
+	printf("\tData:\t\t\t\t2's complement, %s\n", data);
 
 	return (0);
 }
@@ -151,9 +169,9 @@ int pelf_version(Elf_Ehdr *h)
 	unsigned char *e_ident = h->e_ident;
 
 	if (e_ident[EI_VERSION] == EV_CURRENT)
-		printf("Version:\t\t\t%d (current)\n", EV_CURRENT);
+		printf("\tVersion:\t\t\t%d (current)\n", EV_CURRENT);
 	else
-		printf("Version:\t\t\tInvalid\n");
+		printf("\tVersion:\t\t\tInvalid\n");
 
 	return (0);
 }
@@ -204,11 +222,11 @@ int pelf_osabi(Elf_Ehdr *h)
 			osabi = "Open BSD";
 			break;
 		default:
-			printf("OS/ABI:\t\t\t\t<unknown: %d>", e_ident[EI_OSABI]);
+			printf("\tOS/ABI:\t\t\t\t<unknown: %d>", e_ident[EI_OSABI]);
 			return (0);
 	}
 
-	printf("OS/ABI:\t\t\t\t%s\n", osabi);
+	printf("\tOS/ABI:\t\t\t\t%s\n", osabi);
 
 	return (0);
 }
@@ -222,7 +240,7 @@ int pelf_abiv(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
 
-	printf("ABI Version\t\t\t%d\n", e_ident[EI_ABIVERSION]);
+	printf("\tABI Version\t\t\t%d\n", e_ident[EI_ABIVERSION]);
 
 	return (0);
 }
@@ -261,7 +279,7 @@ int pelf_type(Elf_Ehdr *h)
 			type = "No file type";
 	}
 
-	printf("Type:\t\t\t\t%s\n", type);
+	printf("\tType:\t\t\t\t%s\n", type);
 	return (0);
 }
 /**
@@ -272,7 +290,7 @@ int pelf_type(Elf_Ehdr *h)
  */
 int pelf_entry(Elf_Ehdr *h)
 {
-	printf("Entry point address\t\t%lu\n", h->e_entry);
+	printf("\tEntry point address:\t\t0x%lx\n", h->e_entry);
 	return (0);
 }
 /**
