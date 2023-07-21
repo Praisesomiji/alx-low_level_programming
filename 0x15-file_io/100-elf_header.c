@@ -168,9 +168,50 @@ int pelf_version(Elf_Ehdr *h)
 int pelf_osabi(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
+	char *osabi;
 
-        if (h && e_ident)
-                return (0);
+	switch (e_ident[EI_OSABI])
+	{
+		case ELFOSABI_SYSV:
+			osabi = "UNIX - System V";
+			break;
+		case ELFOSABI_HPUX:
+			osabi = "HP-UX";
+			break;
+		case ELFOSABI_NETBSD:
+			osabi = "NetBSD";
+			break;
+		case ELFOSABI_LINUX:
+			osabi = "Linux";
+			break;
+		case ELFOSABI_SOLARIS:
+			osabi = "Solaris";
+			break;
+		case ELFOSABI_AIX:
+			osabi = "AIX";
+			break;
+		case ELFOSABI_IRIX:
+			osabi = "IRIX";
+			break;
+		case ELFOSABI_FREEBSD:
+			osabi = "FreeBSD";
+			break;
+		case ELFOSABI_TRU64:
+			osabi = "TRU64 UNIX";
+			break;
+		case ELFOSABI_MODESTO:
+			osabi = "Modesto";
+			break;
+		case ELFOSABI_OPENBSD:
+			osabi = "Open BSD";
+			break;
+		default:
+			printf("OS/ABI:\t\t\t\t<unknown: %d>", e_ident[EI_OSABI]);
+			return (0);
+	}
+
+	printf("OS/ABI:\t\t\t\t%s\n", osabi);
+
 	return (0);
 }
 /**
