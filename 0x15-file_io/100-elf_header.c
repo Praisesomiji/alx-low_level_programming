@@ -152,8 +152,11 @@ int pelf_version(Elf_Ehdr *h)
 {
 	unsigned char *e_ident = h->e_ident;
 
-	if (h && e_ident)
-		return (0);
+	if (e_ident[EI_VERSION] != EV_CURRENT)
+		return (-1);
+
+	printf("Version:\t\t\t%d (current)\n", EV_CURRENT);
+
 	return (0);
 }
 /**
